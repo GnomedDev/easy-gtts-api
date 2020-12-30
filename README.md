@@ -8,3 +8,5 @@ Returns documentation
 Returns TTS from gTTS, params are:
 * `?text=`: Text to TTS, required
 * `?lang=en-us`: Language of text, default en-us
+### Example
+`https://easy-gtts.herokuapp.com/tts?text=Hello%20World&lang=en-gb`
