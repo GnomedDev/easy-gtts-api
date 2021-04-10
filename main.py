@@ -30,11 +30,14 @@ def v1_tts(text, lang="en-us"):
     try:
         gTTS(text=text, lang=lang).write_to_fp(mp3)
     except gTTSError as e:
-        if e.rsp:
+        if e.rsp is not None:
+            headers = e.rsp.headers
+            headers.pop("Content-Length", None)
+
             raise fastapi.HTTPException(
                 status_code=e.rsp.status_code,
-                detail=e.rsp.content,
-                headers=e.rsp.headers
+                detail=e.rsp.content.decode(),
+                headers=headers
                 )
 
         raise
