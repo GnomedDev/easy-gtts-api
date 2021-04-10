@@ -29,7 +29,7 @@ def v1_tts(text, lang="en-us"):
     mp3 = BytesIO()
     try:
         gTTS(text=text, lang=lang).write_to_fp(mp3)
-    except AssertionError, ValueError, RuntimeError as e:
+    except (AssertionError, ValueError, RuntimeError) as e:
         raise fastapi.HTTPException(
             status_code=400,
             detail=str(e)
